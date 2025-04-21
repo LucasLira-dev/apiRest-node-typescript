@@ -14,3 +14,5 @@ router.post('/test', (req, res) => {
 });
 
 export default router;
+
+//neste arquivo estamos criando as rotas do servidor, a primeira rota é um get que retorna uma string e a segunda rota é um post que retorna o corpo da requisição em json com o status 401.

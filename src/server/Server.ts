@@ -11,3 +11,5 @@ server.use(router)
 
 
 export { server } 
+
+//neste arquivo estamos importando o express e criando uma instancia do servidor, depois estamos importando as rotas e usando o middleware do express para fazer o parse do json e por fim estamos exportando o servidor para ser usado em outros arquivos.

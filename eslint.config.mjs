@@ -8,5 +8,8 @@ export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js }, extends: ["js/recommended"] },
   { files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: { globals: globals.browser } },
   tseslint.configs.recommended,
-  { rules: { "@typescript-eslint/no-empty-interface": "off" } },
+  { rules:
+     { "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-empty-object-types": "off",
+      } },
 ]);

@@ -1,5 +1,5 @@
 import { RequestHandler } from "express"
-import { object, ObjectSchema, string, ValidationError } from "yup"
+import { ObjectSchema, ValidationError } from "yup"
 import { console } from "inspector"
 import { StatusCodes } from "http-status-codes"
 
@@ -8,7 +8,7 @@ type TProperty = 'body' | 'header' |'params' | 'query' // definindo os tipos de 
 
 type TAllSchemas = Record<TProperty, ObjectSchema<object>> // definindo um tipo que pode ser um objeto com as propriedades definidas acima e os valores como ObjectSchema<object>
 
-type TGetSchema = <T extends object>(schema: ObjectSchema<object>) => ObjectSchema<T>; // definindo um tipo que pode ser uma função que recebe um ObjectSchema e retorna um ObjectSchema
+type TGetSchema = <T extends object>(schema: ObjectSchema<T>) => ObjectSchema<T>; // ajustando o tipo para garantir compatibilidade com o ObjectSchema genérico
 
 type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>; // definindo um tipo que pode ser uma função que retorna um objeto com as propriedades definidas acima e os valores como ObjectSchema<object>
 
@@ -16,7 +16,7 @@ type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler
 
 export const validation:TValidation = (getAllSchemas) => async (req, res, next) =>{
   console.log("Validando...")
-  const schemas = getAllSchemas(schema => schema) // chamando a função que retorna os schemas de validação
+  const schemas = getAllSchemas((schema) => schema) // chamando a função que retorna os schemas de validação
 
   const errorsResult: Record<string, Record<string, string>> = {} // criando um objeto para armazenar os erros de validação
 
@@ -56,9 +56,10 @@ export const validation:TValidation = (getAllSchemas) => async (req, res, next) 
   if(Object.entries(errorsResult).length===0){
     return next(); // se não houver erros de validação, chama o próximo middleware
   } else{
-    return res.status(StatusCodes.BAD_REQUEST).json({
+    res.status(StatusCodes.BAD_REQUEST).json({
       errors: errorsResult // retornando os erros de validação
     });
+    return; // explicitly return void
   }
   
 } // criando um middleware para validação de dados

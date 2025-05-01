@@ -8,6 +8,10 @@ const router = Router();
 
 router.get('/', (req, res) => {
   res.send('Eai!');
+}); 
+
+router.get('/olamundo', (req, res) => {
+  res.send('Ola mundo!');
 });
 
 router.post('/cidades', CidadesController.createValidation, CidadesController.create)

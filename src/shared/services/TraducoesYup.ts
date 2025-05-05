@@ -1,4 +1,5 @@
-import { setLocale} from 'yup'
+import * as yup from 'yup';
+const { setLocale } = yup;
 
 setLocale({
   mixed: {

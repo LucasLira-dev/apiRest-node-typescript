@@ -29,8 +29,15 @@ export const getAllValidation = validation((getSchema)=> ({
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response)=>{
 
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado")
+  res.setHeader('acess-control-expose-headers', 'x-total-count')
+  res.setHeader('x-total-count', 1)
 
-  console.log(req.query);
+
+  return res.status(StatusCodes.OK).json([
+    {
+      id:1,
+      nome: 'São Paulo',
+    }
+  ])
 
 }

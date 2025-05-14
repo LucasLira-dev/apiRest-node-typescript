@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "tsc": "tsc",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage"
+  "dev": "ts-node-dev --respawn --transpile-only src/index.ts", 
+  "start": "node dist/index.js",                              
+  "build": "tsc",                       
+  "test": "jest",                                              
+  "test:watch": "jest --watchAll",                             
+  "test:coverage": "jest --coverage"   
   },
   "keywords": [],
   "author": "",
@@ -39,5 +38,8 @@
     "dotenv": "^16.5.0",
     "http-status-codes": "^2.3.0",
     "yup": "^1.6.1"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
